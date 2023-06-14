@@ -150,11 +150,14 @@ def build_tree(parent_folder_id, parent_folder_name):
             if subfolder:
                 tree.append({item['name']: subfolder})
         else:
-            # If the item is a file, add it to the tree with the image URL
-            file_info = {'name': item['name'], 'Link': item['webViewLink']}
+            # If the item is a file, add it to the tree with the modified file link
+            file_id = item['id']
+            file_link = f"https://drive.google.com/uc?export=view&id={file_id}"
+            file_info = {'name': item['name'], 'Link': file_link}
             tree.append(file_info)
 
     return tree
+
 
 
 # Function to get the files, either from cache or by fetching from Google Drive

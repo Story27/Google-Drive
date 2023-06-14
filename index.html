@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Drive Files</title>
+    <style>
+        /* Add CSS styles for the images and headings */
+        .image {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="fileList"></div>
+
+    <script>
+        // Fetch the JSON file
+        fetch('cache.json')
+            .then(response => response.json())
+            .then(data => {
+                // Get the list of files from the JSON data
+                const files = data.tree;
+
+                // Create HTML elements for each file
+                const fileList = document.getElementById('fileList');
+                files.forEach(folder => {
+                    for (const [folderName, files] of Object.entries(folder)) {
+                        // Create a heading for the folder
+                        const heading = document.createElement('h2');
+                        heading.innerText = folderName;
+                        fileList.appendChild(heading);
+
+                        // Create an image element for each file
+                        files.forEach(file => {
+                            const image = document.createElement('img');
+                            const imageUrl = `https://drive.google.com/uc?export=view&id=${getGoogleDriveFileId(file.Link)}`;
+                            image.src = imageUrl;
+                            image.alt = file.name;
+                            image.classList.add('image');
+                            fileList.appendChild(image);
+                        });
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+
+        // Function to extract the Google Drive file ID from the URL
+        function getGoogleDriveFileId(url) {
+            const match = /[-\w]{25,}/.exec(url);
+            if (match) {
+                return match[0];
+            } else {
+                return '';
+            }
+        }
+    </script>
+</body>
+</html>
