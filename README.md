@@ -2,7 +2,7 @@
 
 ## Description
 
-Google-Drive is a project that aims to provide a seamless integration with Google Drive API for file management.
+This is a project that aims to provide a seamless integration with Google Drive API for file management.
 
 ## Features
 
