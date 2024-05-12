@@ -6,10 +6,10 @@ Google-Drive is a project that aims to provide a seamless integration with Googl
 
 ## Features
 
-- Upload files to Google Drive
-- Download files from Google Drive
-- List files in Google Drive
-- Delete files from Google Drive
+- Create folder in Google Drive
+- Upload files to a specific folder in Google Drive
+- Access data from Google Drive
+- Move files to a different folder in Google Drive
 
 ## Installation
 
